@@ -2,8 +2,6 @@
 
 Idealização de uma aplicação distribuída que contará com pelo menos dois módulos:
 
-~~~
-
 ## Servidor (Objeto do Trabalho 1)
 
 1. Módulo que implemente uma API Web Service RESTFUL com pelo menos 3 casos de uso ou 2 representações de recursos;
@@ -14,8 +12,6 @@ Idealização de uma aplicação distribuída que contará com pelo menos dois m
 
 1. Tecnologias Web: Aplicativo mobile baseado em sistema operacional mobile para interação com o módulo servidor;
 2. Aplicações Distribuídas: Aplicação Web com frontend baseado em framework bootstrap que implemente toda a interface do usuário.
-
-~~~
 
 ## Entregas
 
