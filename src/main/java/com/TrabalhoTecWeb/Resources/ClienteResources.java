@@ -6,7 +6,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.devtools.livereload.LiveReloadServer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +34,6 @@ public class ClienteResources {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> salvar(@Valid @RequestBody Cliente cliente){
 		cliente = clientesService.salvar(cliente);
-
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().
 				path("/{id}").buildAndExpand(cliente.getId()).toUri();
 
@@ -45,6 +43,12 @@ public class ClienteResources {
 	@RequestMapping(method=RequestMethod.DELETE,value="/{id}")
 	public ResponseEntity<Void> deletar(@PathVariable("id") Integer id){
 		clientesService.deletar(id);
+		return ResponseEntity.noContent().build();
+	}
+	@RequestMapping(method=RequestMethod.PUT,value="/{id}")
+	public ResponseEntity<Void> alterar(@Valid @RequestBody Cliente cliente, @PathVariable("id") Integer id){
+		cliente.setId(id);
+		clientesService.alterar(cliente);
 		return ResponseEntity.noContent().build();
 	}
 	

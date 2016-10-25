@@ -30,11 +30,15 @@ public class ClientesService {
 	}
 
 	public void deletar(Integer id) {
+		validarExistenciaCliente(id);
+		clientesRepository.delete(id);
+		
+	}
+
+	private void validarExistenciaCliente(Integer id) {
 		if(clientesRepository.findOne(id) == null){
 			throw new NenhumRegistroEncontradoException("O código informado não foi localizado.");
 		}
-		clientesRepository.delete(id);
-		
 	}
 
 	public Cliente obterPorCpf(String cpf) {
@@ -43,6 +47,13 @@ public class ClientesService {
 
 	public List<Cliente> listarPorNome(String nome) {
 		return clientesRepository.findBynomeContaining(nome);
+	}
+
+	public void alterar(Cliente cliente) {
+		System.out.println(cliente.getId());
+		validarExistenciaCliente(cliente.getId());
+		clientesRepository.save(cliente);
+		
 	}
 
 }

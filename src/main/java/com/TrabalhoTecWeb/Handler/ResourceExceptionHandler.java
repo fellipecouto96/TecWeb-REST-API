@@ -1,5 +1,8 @@
 package com.TrabalhoTecWeb.Handler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
@@ -17,16 +20,19 @@ import com.TrabalhoTecWeb.Service.Exceptions.RegistroRepetidoException;
 public class ResourceExceptionHandler {
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<DetalheErro> handleMethodArgumentNotValidException(MethodArgumentNotValidException e,HttpServletRequest request){
+	public ResponseEntity<List<DetalheErro>> handleMethodArgumentNotValidException(MethodArgumentNotValidException e,HttpServletRequest request){
+		List<DetalheErro> listaErros = new ArrayList<>();
+		List<FieldError> fieldError = e.getBindingResult().getFieldErrors();
 		
-		FieldError fieldError = e.getBindingResult().getFieldError();
+		for (FieldError fe : fieldError) {
+			DetalheErro erro = new DetalheErro();
+			erro.setStatus(HttpStatus.BAD_REQUEST.value());
+			erro.setTitulo(fe.getDefaultMessage());
+			erro.setTimestamp(System.currentTimeMillis());
+			listaErros.add(erro);
+		}
 		
-		DetalheErro erro = new DetalheErro();
-		erro.setStatus(HttpStatus.BAD_REQUEST.value());
-		erro.setTitulo(fieldError.getDefaultMessage());
-		erro.setTimestamp(System.currentTimeMillis());
-		
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(listaErros);
 	}
 	@ExceptionHandler(RegistroRepetidoException.class)
 	public ResponseEntity<DetalheErro> handleRegistroRepetidoException(RegistroRepetidoException e,HttpServletRequest request){

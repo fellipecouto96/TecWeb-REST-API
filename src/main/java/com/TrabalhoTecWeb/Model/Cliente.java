@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -44,14 +45,16 @@ public class Cliente {
 	@Column(name="CPF")
 	private String cpf;
 	
-	@NotNull(message="O senha nome deve ser informado")
+	@NotNull(message="O campo senha deve ser informado")
 	@Column(name="SENHA")
 	@Size(max=10,message="A senha deve possuir no máximo 100 caracteres")
 	private String senha;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE})
 	@JoinColumn(name="ID_ENDERECO")
 	@JsonInclude(Include.NON_NULL)
+	@Valid
+	@NotNull(message="Os dados do Endereço devem ser informados")
 	private Endereco endereco;
 	
 	public Endereco getEndereco() {
