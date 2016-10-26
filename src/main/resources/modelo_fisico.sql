@@ -1,13 +1,13 @@
 CREATE DATABASE `tecweb`;
--- -----------------------------------------------------
+- -----------------------------------------------------
 
--- Table `tecweb`.`Endereco`
+-- Table `tecweb`.`endereco`
 
 -- -----------------------------------------------------
 
 CREATE  TABLE IF NOT EXISTS `tecweb`.`endereco` (
 
-  `ID_ENDERECO` INT NOT NULL AUTO_INCREMENT,
+  `ID_ENDERECO` INT NOT NULL AUTO_INCREMENT ,
 
   `CEP` VARCHAR(8) NOT NULL ,
 
@@ -21,7 +21,7 @@ CREATE  TABLE IF NOT EXISTS `tecweb`.`endereco` (
 
   `ESTADO` CHAR(2) NOT NULL ,
 
-  `COMPLEMENTO` VARCHAR(60) NULL ,
+  `COMPLEMENTO` VARCHAR(60) NULL DEFAULT NULL ,
 
   PRIMARY KEY (`ID_ENDERECO`) )
 
@@ -33,13 +33,13 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 
--- Table `tecweb`.`Cliente`
+-- Table `tecweb`.`cliente`
 
 -- -----------------------------------------------------
 
 CREATE  TABLE IF NOT EXISTS `tecweb`.`cliente` (
 
-  `ID_CLIENTE` INT NOT NULL AUTO_INCREMENT,
+  `ID_CLIENTE` INT NOT NULL AUTO_INCREMENT ,
 
   `NOME` VARCHAR(100) NOT NULL ,
 
@@ -49,7 +49,7 @@ CREATE  TABLE IF NOT EXISTS `tecweb`.`cliente` (
 
   `SENHA` VARCHAR(10) NOT NULL ,
 
-  `ID_ENDERECO` INT NULL ,
+  `ID_ENDERECO` INT NULL DEFAULT NULL ,
 
   PRIMARY KEY (`ID_CLIENTE`) ,
 
@@ -73,13 +73,13 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 
--- Table `tecweb`.`Evento`
+-- Table `tecweb`.`evento`
 
 -- -----------------------------------------------------
 
 CREATE  TABLE IF NOT EXISTS `tecweb`.`evento` (
 
-  `ID_EVENTO` INT NOT NULL AUTO_INCREMENT,
+  `ID_EVENTO` INT NOT NULL AUTO_INCREMENT ,
 
   `NOME` VARCHAR(100) NOT NULL ,
 
@@ -87,11 +87,25 @@ CREATE  TABLE IF NOT EXISTS `tecweb`.`evento` (
 
   `HORA` TIME NOT NULL ,
 
-  `LOCAL` VARCHAR(80) NOT NULL ,
-
   `CAPACIDADE` INT NOT NULL ,
 
-  PRIMARY KEY (`ID_EVENTO`) )
+  `DURACAO` TIME  NOT NULL ,
+
+  `ID_ENDERECO` INT NOT NULL ,
+
+  PRIMARY KEY (`ID_EVENTO`) ,
+
+  INDEX `fk_evento_endereco1` (`ID_ENDERECO` ASC) ,
+
+  CONSTRAINT `fk_evento_endereco1`
+
+    FOREIGN KEY (`ID_ENDERECO` )
+
+    REFERENCES `tecweb`.`endereco` (`ID_ENDERECO` )
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION)
 
 ENGINE = InnoDB;
 
@@ -101,13 +115,13 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 
--- Table `tecweb`.`Ingresso`
+-- Table `tecweb`.`ingresso`
 
 -- -----------------------------------------------------
 
 CREATE  TABLE IF NOT EXISTS `tecweb`.`ingresso` (
 
-  `ID_INGRESSO` INT NOT NULL AUTO_INCREMENT,
+  `ID_INGRESSO` INT NOT NULL AUTO_INCREMENT ,
 
   `VALOR` DECIMAL(6,2) NOT NULL ,
 
@@ -141,13 +155,13 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 
--- Table `tecweb`.`Compra`
+-- Table `tecweb`.`compra`
 
 -- -----------------------------------------------------
 
 CREATE  TABLE IF NOT EXISTS `tecweb`.`compra` (
 
-  `ID_COMPRA` INT NOT NULL AUTO_INCREMENT,
+  `ID_COMPRA` INT NOT NULL AUTO_INCREMENT ,
 
   `VALOR_COMPRA` DECIMAL(6,2) NOT NULL ,
 
@@ -179,14 +193,14 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 
--- Table `tecweb`.`Compra_Ingresso`
+-- Table `tecweb`.`compra_ingresso`
 
 -- -----------------------------------------------------
 
 CREATE  TABLE IF NOT EXISTS `tecweb`.`compra_ingresso` (
 
-  `ID_COMPRA_INGRESSO` INT NOT NULL AUTO_INCREMENT,	
-  
+  `ID_COMPRA_INGRESSO` INT NOT NULL AUTO_INCREMENT ,
+
   `ID_COMPRA` INT NOT NULL ,
 
   `ID_INGRESSO` INT NOT NULL ,
