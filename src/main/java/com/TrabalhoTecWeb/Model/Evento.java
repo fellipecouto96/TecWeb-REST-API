@@ -3,15 +3,23 @@ package com.TrabalhoTecWeb.Model;
 import java.sql.Date;
 import java.sql.Time;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
 @Table(name="evento",schema="tecweb")
@@ -35,14 +43,21 @@ public class Evento {
 	@NotBlank(message="O campo hora deve ser informado")
 	private Time hora;
 	
-	@Column(name="LOCAL")
-	@NotBlank(message="O campo local deve ser informado")
-	private String local;
-	
 	@Column(name="CAPACIDADE")
 	@NotBlank(message="O campo capacidade deve ser informado")
 	private Integer capacidade;
+	
+	@Column(name="DURACAO")
+	@NotBlank(message="O campo duracao deve ser informado")
+	private Time duracao;
 
+	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE})
+	@JoinColumn(name="ID_ENDERECO")
+	@JsonInclude(Include.NON_NULL)
+	@Valid
+	@NotNull(message="Os dados do local devem ser informados")
+	private Endereco local;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -75,11 +90,11 @@ public class Evento {
 		this.hora = hora;
 	}
 
-	public String getLocal() {
+	public Endereco getLocal() {
 		return local;
 	}
 
-	public void setLocal(String local) {
+	public void setLocal(Endereco local) {
 		this.local = local;
 	}
 

@@ -24,8 +24,8 @@ public class EventosService {
 
 	public Evento salvar(Evento evento) {
 		//verifica se já existe Cliente com o cpf informado
-		if(eventosRepository.findByDataAndLocalAndHoraContaining(evento.getLocal(), evento.getHora(), evento.getData()) != null){
-			throw new RegistroRepetidoException("Já existe um cadastro para este local e horario.");
+		if(eventosRepository.findByDataAndLocalAndHoraContaining(evento.getLocal().getLogradouro(), evento.getHora(), evento.getData()) != null){
+			throw new RegistroRepetidoException("Já existe um cadastro para esta data, local e horario.");
 		}
 		evento.setId(null);
 		return eventosRepository.save(evento);
