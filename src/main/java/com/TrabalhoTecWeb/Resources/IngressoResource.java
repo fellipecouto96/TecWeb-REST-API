@@ -42,13 +42,13 @@ public class IngressoResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, params={"evento"})
-	public ResponseEntity<List<Ingresso>> salvar(@RequestParam(value="evento") Integer codEvento){
+	public ResponseEntity<List<Ingresso>> pesquisarPorEvento(@RequestParam(value="evento") Integer codEvento){
 		List<Ingresso> ingressos = ingressoService.listarPorCodEvento(codEvento);
 		return ResponseEntity.status(HttpStatus.OK).body(ingressos);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, params={"evento","ingresso"})
-	public ResponseEntity<List<Ingresso>> salvar(@RequestParam(value="evento") Integer codEvento,@RequestParam(value="ingresso") Integer codIngresso){
+	public ResponseEntity<List<Ingresso>> pesquisarPorEventoIngresso(@RequestParam(value="evento") Integer codEvento,@RequestParam(value="ingresso") Integer codIngresso){
 		List<Ingresso> ingressos = ingressoService.listarPorCodEventoCodIngresso(codEvento,codIngresso);
 		return ResponseEntity.status(HttpStatus.OK).body(ingressos);
 	}
@@ -57,6 +57,12 @@ public class IngressoResource {
 	public ResponseEntity<Void> alterar(@Valid @RequestBody Ingresso ingresso, @PathVariable("id") Integer id){
 		ingresso.setId(id);
 		ingressoService.alterar(ingresso);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE,value="/{id}")
+	public ResponseEntity<Void> excluir(@PathVariable("id") Integer id){
+		ingressoService.excluir(id);
 		return ResponseEntity.noContent().build();
 	}
 	

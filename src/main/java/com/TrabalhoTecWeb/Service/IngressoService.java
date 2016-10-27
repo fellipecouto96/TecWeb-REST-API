@@ -54,9 +54,24 @@ public class IngressoService {
 		return ingressoRepository.listarPorCodEventoCodIngresso(codEvento,codIngresso);
 	}
 	public void alterar(Ingresso ingresso) {
-		validarEventoExistente(ingresso);
+		validarIngressoExistente(ingresso.getId());
 		ingressoRepository.save(ingresso);
-		
+	}
+
+	public void excluir(Integer id) {
+		//TODO VALIDAR SE JÁ EXISTEM INGRESSOS VENDIDOS
+		validarIngressoExistente(id);
+		ingressoRepository.delete(id);
+	}
+
+	private void validarIngressoExistente(Integer id) {
+		if(id == null){
+			throw new NenhumRegistroEncontradoException("O Cadastro do ingresso informado não foi localizado.");
+		}
+		Ingresso ingresso = ingressoRepository.findOne(id);
+		if(ingresso == null){
+			throw new NenhumRegistroEncontradoException("O Cadastro do ingresso informado não foi localizado.");
+		}
 	}
 	
 }
