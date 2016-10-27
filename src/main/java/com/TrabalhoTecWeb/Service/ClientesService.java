@@ -50,7 +50,6 @@ public class ClientesService {
 	}
 
 	public void alterar(Cliente cliente) {
-		System.out.println(cliente.getId());
 		validarExistenciaCliente(cliente.getId());
 		clientesRepository.save(cliente);
 		
