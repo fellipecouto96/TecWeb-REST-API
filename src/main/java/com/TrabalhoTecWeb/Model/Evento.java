@@ -1,7 +1,9 @@
 package com.TrabalhoTecWeb.Model;
 
-import java.sql.Date;
+
+
 import java.sql.Time;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -36,19 +38,19 @@ public class Evento {
 	private String nome;
 	
 	@Column(name="DATA")
-	@NotBlank(message="O campo data deve ser informado")
+	@NotNull(message="O campo data deve ser informado")
 	private Date data;
 	
 	@Column(name="HORA")
-	@NotBlank(message="O campo hora deve ser informado")
+	@NotNull(message="O campo hora deve ser informado")
 	private Time hora;
 	
 	@Column(name="CAPACIDADE")
-	@NotBlank(message="O campo capacidade deve ser informado")
+	@NotNull(message="O campo capacidade deve ser informado")
 	private Integer capacidade;
 	
 	@Column(name="DURACAO")
-	@NotBlank(message="O campo duracao deve ser informado")
+	@NotNull(message="O campo duracao deve ser informado")
 	private Time duracao;
 
 	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE})
@@ -104,5 +106,13 @@ public class Evento {
 
 	public void setCapacidade(Integer capacidade) {
 		this.capacidade = capacidade;
+	}
+
+	public Time getDuracao() {
+		return duracao;
+	}
+
+	public void setDuracao(Time duracao) {
+		this.duracao = duracao;
 	}
 }

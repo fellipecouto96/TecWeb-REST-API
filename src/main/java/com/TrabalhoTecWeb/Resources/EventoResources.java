@@ -45,6 +45,7 @@ public class EventoResources {
 		eventosService.deletar(id);
 		return ResponseEntity.noContent().build();
 	}
+	
 	@RequestMapping(method=RequestMethod.PUT,value="/{id}")
 	public ResponseEntity<Void> alterar(@Valid @RequestBody Evento evento, @PathVariable("id") Integer id){
 		evento.setId(id);

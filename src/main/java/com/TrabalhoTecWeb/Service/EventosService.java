@@ -24,7 +24,7 @@ public class EventosService {
 
 	public Evento salvar(Evento evento) {
 		//verifica se já existe Cliente com o cpf informado
-		if(eventosRepository.findByDataAndLocalAndHoraContaining(evento.getLocal().getLogradouro(), evento.getHora(), evento.getData()) != null){
+		if(obterPorDataLocalEHora(evento.getLocal().getNumero(), evento.getHora(), evento.getData()) != null) {
 			throw new RegistroRepetidoException("Já existe um cadastro para esta data, local e horario.");
 		}
 		evento.setId(null);
@@ -54,8 +54,8 @@ public class EventosService {
 		return eventosRepository.findBynomeContaining(nome);
 	}
 
-	public Evento obterPorDataLocalEHora(String local, Time hora, Date data) {
-		return eventosRepository.findByDataAndLocalAndHoraContaining(local, hora, data);
+	public Evento obterPorDataLocalEHora(Integer local, Time hora, Date data) {
+		return eventosRepository.findByDataAndLocalAndHora(local, hora, data);
 	}
 	
 	public List<Evento> obterPorLocalEHora(String local, Time hora) {

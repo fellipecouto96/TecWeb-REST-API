@@ -1,5 +1,7 @@
 package com.TrabalhoTecWeb.Repository;
 
+
+
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +12,7 @@ import com.TrabalhoTecWeb.Model.Evento;
 
 public interface EventosRepository extends JpaRepository<Evento, Integer> {
 	
-	Evento findByDataAndLocalAndHoraContaining(String local, Time hora, Date data);
+	Evento findByDataAndLocalAndHora(Integer local, Time hora, Date data);
 	
 	List<Evento> findByLocalAndHoraContaining(String local, Time hora);
 	
