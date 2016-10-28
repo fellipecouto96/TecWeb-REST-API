@@ -64,7 +64,7 @@ public class IngressoService {
 		ingressoRepository.delete(id);
 	}
 
-	private void validarIngressoExistente(Integer id) {
+	public void validarIngressoExistente(Integer id) {
 		if(id == null){
 			throw new NenhumRegistroEncontradoException("O Cadastro do ingresso informado não foi localizado.");
 		}
