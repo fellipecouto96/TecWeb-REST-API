@@ -35,9 +35,9 @@ public class ClientesService {
 		
 	}
 
-	private void validarExistenciaCliente(Integer id) {
+	public void validarExistenciaCliente(Integer id) {
 		if(clientesRepository.findOne(id) == null){
-			throw new NenhumRegistroEncontradoException("O código informado não foi localizado.");
+			throw new NenhumRegistroEncontradoException("O código do cliente informado não foi localizado.");
 		}
 	}
 

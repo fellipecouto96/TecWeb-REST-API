@@ -12,8 +12,6 @@ import com.TrabalhoTecWeb.Model.Evento;
 
 public interface EventosRepository extends JpaRepository<Evento, Integer> {
 	
-	Evento findByDataAndLocalAndHora(Integer local, Time hora, Date data);
-	
 	List<Evento> findByLocalAndHoraContaining(String local, Time hora);
 	
 	List<Evento> findBynomeContaining(String nome);
