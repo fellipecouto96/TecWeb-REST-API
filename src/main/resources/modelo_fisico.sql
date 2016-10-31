@@ -5,6 +5,8 @@ CREATE DATABASE `tecweb`;
 
 -- -----------------------------------------------------
 
+USE `tecweb`;
+
 CREATE  TABLE IF NOT EXISTS `tecweb`.`endereco` (
 
   `ID_ENDERECO` INT NOT NULL AUTO_INCREMENT ,
