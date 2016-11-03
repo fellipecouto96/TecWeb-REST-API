@@ -12,7 +12,7 @@ import com.TrabalhoTecWeb.Model.Evento;
 
 public interface EventosRepository extends JpaRepository<Evento, Integer> {
 	
-	List<Evento> findByLocalAndHoraContaining(String local, Time hora);
+	List<Evento> findByLocalAndHora(String local, Time hora);
 	
 	List<Evento> findBynomeContaining(String nome);
 	

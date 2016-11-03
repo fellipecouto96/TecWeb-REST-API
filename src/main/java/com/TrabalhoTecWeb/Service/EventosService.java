@@ -51,11 +51,15 @@ public class EventosService {
 
 	
 	public List<Evento> obterPorLocalEHora(String local, Time hora) {
-		return eventosRepository.findByLocalAndHoraContaining(local, hora);
+		return eventosRepository.findByLocalAndHora(local, hora);
 	}
 
 	public List<Evento> listarPorNome(String nome) {
 		return eventosRepository.findBynomeContaining(nome);
+	}
+	
+	public List<Evento> listarPorData(Date data) {
+		return eventosRepository.findByData(data);
 	}
 
 }

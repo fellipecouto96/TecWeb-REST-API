@@ -5,6 +5,8 @@ CREATE DATABASE `tecweb`;
 
 -- -----------------------------------------------------
 
+USE `tecweb`;
+
 CREATE  TABLE IF NOT EXISTS `tecweb`.`endereco` (
 
   `ID_ENDERECO` INT NOT NULL AUTO_INCREMENT ,
@@ -88,8 +90,6 @@ CREATE  TABLE IF NOT EXISTS `tecweb`.`evento` (
   `HORA` TIME NOT NULL ,
 
   `CAPACIDADE` INT NOT NULL ,
-
-  `DURACAO` TIME  NOT NULL ,
 
   `ID_ENDERECO` INT NOT NULL ,
 
