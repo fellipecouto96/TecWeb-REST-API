@@ -48,10 +48,6 @@ public class Evento {
 	@Column(name="CAPACIDADE")
 	@NotNull(message="O campo capacidade deve ser informado")
 	private Integer capacidade;
-	
-	@Column(name="DURACAO")
-	@NotNull(message="O campo duracao deve ser informado")
-	private Time duracao;
 
 	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE})
 	@JoinColumn(name="ID_ENDERECO")
@@ -106,13 +102,5 @@ public class Evento {
 
 	public void setCapacidade(Integer capacidade) {
 		this.capacidade = capacidade;
-	}
-
-	public Time getDuracao() {
-		return duracao;
-	}
-
-	public void setDuracao(Time duracao) {
-		this.duracao = duracao;
 	}
 }

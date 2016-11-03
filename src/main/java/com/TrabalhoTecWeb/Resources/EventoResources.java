@@ -1,6 +1,7 @@
 package com.TrabalhoTecWeb.Resources;
 
 import java.net.URI;
+import java.sql.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -54,8 +55,14 @@ public class EventoResources {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET,params={"nome"})
-	public ResponseEntity<List<Evento>> pesquisarPorNome(@RequestParam(value = "nome") String nome){
-		List<Evento> evento = eventosService.obterPorNome(nome);
+	public ResponseEntity<List<Evento>> listarPorNome(@RequestParam(value = "nome") String nome){
+		List<Evento> evento = eventosService.listarPorNome(nome);
+		return ResponseEntity.status(HttpStatus.OK).body(evento);
+	}
+	
+	@RequestMapping(method=RequestMethod.GET,params={"data"})
+	public ResponseEntity<List<Evento>> listarPorData(@RequestParam(value = "data") Date data){
+		List<Evento> evento = eventosService.listarPorData(data);
 		return ResponseEntity.status(HttpStatus.OK).body(evento);
 	}
 
