@@ -47,7 +47,7 @@ public class Cliente {
 	
 	@NotNull(message="O campo senha deve ser informado")
 	@Column(name="SENHA")
-	@Size(max=10,message="A senha deve possuir no máximo 100 caracteres")
+	@Size(max=10,message="A senha deve possuir no máximo 10 caracteres.")
 	private String senha;
 	
 	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE})
