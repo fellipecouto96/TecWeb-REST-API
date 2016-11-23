@@ -1,27 +1,27 @@
 <html>
-<title>Cadastro de Evento</title>
 <head>
+    <title>Cadastro de Evento</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../css/style.css" />
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
-    <script src="../js/Globais.js"></script> 
-  
-	<script type="text/javascript">
-	  	
-	  	function carregarIncluir(){
-	  		var form = document.forms[0];
-	  		form.action = diretorioServidor+"cadastrarEvento";
-	  		form.submit();
-	  	}
-  
-  	</script>
+
+    <script src="../js/Globais.js"></script>
+
+    <script type="text/javascript">
+
+        function carregarIncluir() {
+            var form = document.forms[0];
+            form.action = diretorioServidor + "cadastrarEvento";
+            form.submit();
+        }
+
+    </script>
 </head>
 <body>
     <!-- Navbar -->
@@ -29,11 +29,11 @@
         <div class="header clearfix">
             <nav>
                 <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="home">Home</a></li>
-            <li role="presentation"><a href="exibirClientes">Cliente</a></li>
-            <li role="presentation"><a href="exibirEvento">Evento</a></li>
-            <li role="presentation"><a href="exibirIngresso">Ingresso</a></li>
-            <li role="presentation"><a href="comprar">Comprar Ingresso</a></li>
+                    <li role="presentation"><a href="home">Home</a></li>
+                    <li role="presentation"><a href="exibirClientes">Cliente</a></li>
+                    <li role="presentation"><a href="exibirEvento">Evento</a></li>
+                    <li role="presentation"><a href="exibirIngresso">Ingresso</a></li>
+                    <li role="presentation"><a href="comprar">Comprar Ingresso</a></li>
                 </ul>
             </nav>
             <h3 class="text-muted">Evento</h3>
@@ -42,13 +42,13 @@
         <form class="form-inline" align="left">
             <div class="form-group">
                 <h3>Pesquisar</h3>
-				<div class="clearfix" style="margin-top:10px"></div>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="Campus Party"/>
+                <div class="clearfix" style="margin-top:10px"></div>
+                <input type="text" class="form-control" id="exampleInputName2" placeholder="Campus Party" />
             </div>
-			<div class="clearfix" style="margin-top:10px"></div>
+            <div class="clearfix" style="margin-top:10px"></div>
             <button type="submit" class="btn btn-success">Pesquisar</button>
             <button type="submit" class="btn btn-primary" onclick="carregarIncluir()">Incluir</button>
-            <a href="cadastro.html"><button class="btn btn-warning">Relatorio</button></a>
+            <button type="submit" class="btn btn-warning">Relatorio</button></a>
         </form>
         <div class="well">
             <table class="table">
