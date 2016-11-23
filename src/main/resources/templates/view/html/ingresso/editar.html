@@ -1,5 +1,8 @@
 <html>
 <head>
+
+	
+
     <title>Alteração de Ingresso</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
@@ -7,9 +10,101 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
     <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript">
+	//<![CDATA[
+	var idGlobal;
+  
+	window.onload = function(){
+		carregarCombosEvento();
+		idGlobal = window.location.pathname[window.location.pathname.length-1];
+		carregarIngresso(idGlobal);
+	
+	}
+	function carregarIngresso(idGlobal)
+  	{
+  	    var xmlHttp = new XMLHttpRequest();
+  	   	xmlHttp.onreadystatechange = function() { 
+  	        if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+  	        	
+  	        	var data = JSON.parse(xmlHttp.responseText);
+  	        	console.log(data);
+  	        	if(data != undefined){
+					document.getElementById('evento').value=data.evento.id;
+					document.getElementById('lote').value=data.lote;
+					document.getElementById('setor').value=data.setor;
+					document.getElementById('meia').value=data.meiaEntrada;
+					document.getElementById('quantidade').value=data.quantidade;
+					document.getElementById('valor').value=data.valor;
+	  	        }
+  	        }
+  	    }
+  	    xmlHttp.open( "GET", "http://34.192.244.14//TecWeb-REST-API-1.0.0-SNAPSHOT/ingressos/"+idGlobal, true );
+  	    xmlHttp.send( null );
+  	}
+  
+	function carregarCombosEvento()
+  	{
+  	    var xmlHttp = new XMLHttpRequest();
+  	   	xmlHttp.onreadystatechange = function() { 
+  	        if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+  	        	
+  	        	var data = JSON.parse(xmlHttp.responseText);
+  	        
+  	        	if(data != undefined){
+	  	            var eventos = document.getElementById('evento');
+	  	        
+	  	        	for(var i = 0;i< data.length;i++){
+		  	      		var option = document.createElement("option");
+				  	    option.text = data[i].nome;
+				  	    option.value = data[i].id;
+			  	    	eventos.add(option);
+	  	        		
+	  	        	}
+  	        	}
+  	        }
+  	    }
+  	    xmlHttp.open( "GET", "http://34.192.244.14//TecWeb-REST-API-1.0.0-SNAPSHOT/eventos", true );
+  	    xmlHttp.send( null );
+  	}
+	
+	function salvar(){
+		var evento = document.getElementById('evento').value;
+		var lote = document.getElementById('lote').value;
+		var setor = document.getElementById('setor').value;
+		var meia = document.getElementById('meia').value;
+		var quantidade = document.getElementById('quantidade').value;
+		var valor = document.getElementById('valor').value;
+		
+		if(evento == '' || lote == '' || setor == '' || meia == '' || quantidade == '' || valor == ''){
+			alert("Preencha todos os campos");
+		}else{
+			
+			var envio = JSON.stringify({"valor":valor,"setor":setor,"lote":lote,
+				"meiaEntrada":Boolean(meia),"quantidade":quantidade,"evento":{"id":evento}});
+				
+			var xmlHttp = new XMLHttpRequest();
+	  	   	xmlHttp.onreadystatechange = function() { 
+	  	        if (xmlHttp.readyState == 4 && xmlHttp.status == 204){
+					alert("Alterado com sucesso");
+					document.getElementById('evento').value="";
+					document.getElementById('lote').value="";
+					document.getElementById('setor').value="";
+					document.getElementById('meia').value="";
+					document.getElementById('quantidade').value="";
+					document.getElementById('valor').value="";
+	  	        }
+	  	    }
+	  	    xmlHttp.open( "PUT", "http://34.192.244.14//TecWeb-REST-API-1.0.0-SNAPSHOT/ingressos/"+idGlobal, true );
+	  	    xmlHttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8')
+	  	    xmlHttp.send( envio );
+				
+		}
+			
+		}
+	
+	//]]>
+	</script>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
@@ -18,11 +113,11 @@
             <div class="header clearfix">
                 <nav>
                     <ul class="nav nav-pills pull-right">
-                        <li role="presentation"><a href="home">Home</a></li>
-                        <li role="presentation"><a href="exibirClientes">Cliente</a></li>
-                        <li role="presentation"><a href="exibirEvento">Evento</a></li>
-                        <li role="presentation"><a href="exibirIngresso">Ingresso</a></li>
-                        <li role="presentation"><a href="comprar">Comprar Ingresso</a></li>
+                        <li role="presentation"><a href="../home">Home</a></li>
+                        <li role="presentation"><a href="../exibirClientes">Cliente</a></li>
+                        <li role="presentation"><a href="../exibirEvento">Evento</a></li>
+                        <li role="presentation"><a href="../exibirIngresso">Ingresso</a></li>
+                        <li role="presentation"><a href="../comprar">Comprar Ingresso</a></li>
                     </ul>
                 </nav>
                 <h3 class="text-muted">Tickets</h3>
@@ -32,57 +127,61 @@
             <div class="col-lg-12 well">
                 <div class="row">
                     <form>
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-6 form-group">
-                                    <label>Evento</label>
-                                    <select class="form-control">
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-6 form-group">
-                                    <label>Lote</label>
-                                    <select class="form-control">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Setor</label>
-                                <select class="form-control">
-                                    <option>VIP</option>
-                                    <option>Camarote</option>
-                                    <option>Pista</option>
-                                </select>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4 form-group">
-                                    <label>Meia entrada</label>
-                                    <select class="form-control">
-                                        <option>Sim</option>
-                                        <option>Não</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <label>Quantidade</label>
-                                    <select class="form-control">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <label>Valor dos ingressos</label>
-                                    <input type="text" placeholder="Quanto custa os ingressos?" class="form-control" />
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-lg btn-info">Editar ingresso</button>
-                        </div>
+                                  <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-6 form-group">
+                <label>Evento</label>
+                <select class="form-control" id="evento">
+                  <option value="">Selecione um evento</option>
+                </select>
+              </div>
+              <div class="col-sm-6 form-group">
+                <label>Lote</label>
+                <select class="form-control" id="lote">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Setor</label>
+              <select class="form-control" id="setor">
+                <option value="VIP">VIP</option>
+                <option value="Camarote">Camarote</option>
+                <option value="Pista">Pista</option>
+              </select>
+            </div>
+            <div class="row">
+              <div class="col-sm-4 form-group">
+                <label>Meia entrada</label>
+                <select class="form-control" id="meia">
+                  <option value="true">Sim</option>
+                  <option value="false">Não</option>
+                </select>
+              </div>
+              <div class="col-sm-4 form-group">
+                <label>Quantidade</label>
+                <select class="form-control" id="quantidade">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+              <div class="col-sm-4 form-group">
+                <label>Valor dos ingressos</label>
+                <input type="number" placeholder="Quanto custa os ingressos?" class="form-control" id="valor"/>
+              </div>
+            </div>
+            <button type="button" class="btn btn-lg btn-info" onclick="salvar();">Editar ingresso</button>
+          </div>
                     </form>
                 </div>
             </div>

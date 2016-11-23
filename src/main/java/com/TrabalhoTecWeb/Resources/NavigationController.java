@@ -1,5 +1,6 @@
 package com.TrabalhoTecWeb.Resources;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -37,6 +38,10 @@ public class NavigationController {
 	@RequestMapping(value="/cadastrarIngresso",method=RequestMethod.GET)
 	public String cadastrarIngresso(){
 		return "view/html/ingresso/cadastro";
+	}
+	@RequestMapping(value="/alterarIngresso/{id}",method=RequestMethod.GET)
+	public String alterarIngresso(@PathVariable("id") String id){
+		return "view/html/ingresso/editar";
 	}
 	
 	@RequestMapping(value="/comprar",method=RequestMethod.GET)
