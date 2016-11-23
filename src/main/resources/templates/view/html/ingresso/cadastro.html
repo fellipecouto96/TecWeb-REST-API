@@ -25,7 +25,7 @@
   	        	var data = JSON.parse(xmlHttp.responseText);
   	        
   	        	if(data != undefined){
-	  	            var eventos = document.getElementById('eventos');
+	  	            var eventos = document.getElementById('evento');
 	  	        
 	  	        	for(var i = 0;i< data.length;i++){
 		  	      		var option = document.createElement("option");
@@ -43,13 +43,39 @@
   	}
 	
 	function salvar(){
-		var evento = document.getElemenById('evento').value;
-		var lote = document.getElemenById('lote').value;
-		var setor = document.getElemenById('setor').value;
-		var meia = document.getElemenById('meia').value;
-		var quantidade = document.getElemenById('quantidade').value;
-		var valor = document.getElemenById('valor').value;
-	}
+		var evento = document.getElementById('evento').value;
+		var lote = document.getElementById('lote').value;
+		var setor = document.getElementById('setor').value;
+		var meia = document.getElementById('meia').value;
+		var quantidade = document.getElementById('quantidade').value;
+		var valor = document.getElementById('valor').value;
+		
+		if(evento == '' || lote == '' || setor == '' || meia == '' || quantidade == '' || valor == ''){
+			alert("Preencha todos os campos");
+		}else{
+			
+			var envio = JSON.stringify({"valor":valor,"setor":setor,"lote":lote,
+				"meiaEntrada":Boolean(meia),"quantidade":quantidade,"evento":{"id":evento}});
+				
+			var xmlHttp = new XMLHttpRequest();
+	  	   	xmlHttp.onreadystatechange = function() { 
+	  	        if (xmlHttp.readyState == 4 && xmlHttp.status == 201){
+					alert("Cadastrado com sucesso");
+					document.getElementById('evento').value="";
+					document.getElementById('lote').value="";
+					document.getElementById('setor').value="";
+					document.getElementById('meia').value="";
+					document.getElementById('quantidade').value="";
+					document.getElementById('valor').value="";
+	  	        }
+	  	    }
+	  	    xmlHttp.open( "POST", "http://34.192.244.14//TecWeb-REST-API-1.0.0-SNAPSHOT/ingressos", true );
+	  	    xmlHttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8')
+	  	    xmlHttp.send( envio );
+				
+		}
+			
+		}
 	
 	//]]>
   </script>
@@ -129,7 +155,7 @@
                 <input type="number" placeholder="Quanto custa os ingressos?" class="form-control" id="valor"/>
               </div>
             </div>
-            <button type="button" class="btn btn-lg btn-info">Criar ingresso</button>
+            <button type="button" class="btn btn-lg btn-info" onclick="salvar();">Criar ingresso</button>
           </div>
         </form>
       </div>
