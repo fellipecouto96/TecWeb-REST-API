@@ -1,0 +1,92 @@
+<html>
+<title>Cadastro de Cliente</title>
+<head>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
+  <script src="../js/Globais.js"></script> 
+  
+	<script type="text/javascript">
+	  	
+	  	function carregarIncluir(){
+	  		var form = document.forms[0];
+	  		form.action = diretorioServidor+"cadastrarIngresso";
+	  		form.submit();
+	  	}
+  
+  	</script>
+  
+</head>
+<body>
+    <div class="container">
+      <!-- Navbar -->
+      <div class="container">
+        <div class="header clearfix">
+          <nav>
+            <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="home">Home</a></li>
+            <li role="presentation"><a href="exibirClientes">Cliente</a></li>
+            <li role="presentation"><a href="exibirEvento">Evento</a></li>
+            <li role="presentation"><a href="exibirIngresso">Ingresso</a></li>
+            <li role="presentation"><a href="comprar">Comprar Ingresso</a></li>
+            </ul>
+          </nav>
+          <h3 class="text-muted">Tickets</h3>
+        </div>
+        <!-- Fim da Navbar -->
+      <form class="form-inline" align="left">
+        <div class="form-group">
+          <h3>Pesquisar</h3>
+		  <div class="clearfix" style="margin-top:10px"></div>
+          <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe"/>
+        </div><div class="clearfix" style="margin-top:10px"></div>
+        <button type="submit" class="btn btn-success">Pesquisar</button>
+        <button type="submit" class="btn btn-primary" onclick="carregarIncluir()">Incluir</button>
+      </form>
+      <div class="well">
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="text-align: center;">ID</th>
+              <th style="text-align: center;">Evento</th>
+              <th style="text-align: center;">Lote</th>
+              <th style="text-align: center;">Setor</th>
+              <th style="text-align: center;">Meia Entrada</th>
+              <th style="text-align: center;">Quantidade</th>
+              <th style="text-align: center;">Valor</th>
+              <th width="10%" style="text-align: center;">Alterar</th>
+              <th width="10%" style="text-align: center;">Excluir</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align: center;">1</td>
+              <td style="text-align: center;">Campus Party</td>
+              <td style="text-align: center;">2</td>
+              <td style="text-align: center;">Área VIP</td>
+              <td style="text-align: center;">Sim</td>
+              <td style="text-align: center;">32</td>
+              <td style="text-align: center;">R$190,00</td>
+              <td style="text-align: center;"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></td>
+              <td style="text-align: center;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+  <!-- Footer -->
+      <footer class="footer">
+        <p>&copy; 2016 Company, Inc.</p>
+      </footer>
+  <!-- Fim da Footer -->
+    </div>
+    </div>
+  </body>
+  </html>

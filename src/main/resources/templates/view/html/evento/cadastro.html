@@ -1,0 +1,78 @@
+<html>
+<head>
+    <title>Cadastro de Evento</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <div class="container">
+            <div class="header clearfix">
+                <nav>
+                    <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="home">Home</a></li>
+            <li role="presentation"><a href="exibirClientes">Cliente</a></li>
+            <li role="presentation"><a href="exibirEvento">Evento</a></li>
+            <li role="presentation"><a href="exibirIngresso">Ingresso</a></li>
+            <li role="presentation"><a href="comprar">Comprar Ingresso</a></li>
+                    </ul>
+                </nav>
+                <h3 class="text-muted">Evento</h3>
+            </div>
+            <!-- Fim da Navbar -->
+            <h1 class="well">Criar Evento</h1>
+            <div class="col-lg-12 well">
+                <div class="row">
+                    <form>
+                        <div class="col-sm-12">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-12 form-group">
+                                        <label>Nome do Evento</label>
+                                        <input type="text" placeholder="Campus Party" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-4 form-group">
+                                        <label>Data</label>
+                                        <input type="date" class="form-control" />
+                                    </div>
+                                    <div class="col-sm-2 form-group">
+                                        <label>Hora</label>
+                                        <input type="time" class="form-control" />
+                                    </div>
+
+                                    <div class="col-sm-6 form-group">
+                                        <label>Capacidade</label>
+                                        <input type="number" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <button type="button" class="btn btn-lg btn-info">Criar Evento</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Footer -->
+            <footer class="footer">
+                <p>&copy; 2016 Company, Inc.</p>
+            </footer>
+            <!-- Fim da Footer -->
+        </div>
+    </div>
+</body>
+</html>
