@@ -1,7 +1,5 @@
 package com.TrabalhoTecWeb;
 
-import javax.servlet.FilterRegistration.Dynamic;
-
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 

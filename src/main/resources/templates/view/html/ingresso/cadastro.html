@@ -41,6 +41,16 @@
   	    xmlHttp.open( "GET", "http://34.192.244.14//TecWeb-REST-API-1.0.0-SNAPSHOT/eventos", true );
   	    xmlHttp.send( null );
   	}
+	
+	function salvar(){
+		var evento = document.getElemenById('evento').value;
+		var lote = document.getElemenById('lote').value;
+		var setor = document.getElemenById('setor').value;
+		var meia = document.getElemenById('meia').value;
+		var quantidade = document.getElemenById('quantidade').value;
+		var valor = document.getElemenById('valor').value;
+	}
+	
 	//]]>
   </script>
 
@@ -70,53 +80,53 @@
             <div class="row">
               <div class="col-sm-6 form-group">
                 <label>Evento</label>
-                <select class="form-control" id="eventos">
+                <select class="form-control" id="evento">
                   <option value="">Selecione um evento</option>
                 </select>
               </div>
               <div class="col-sm-6 form-group">
                 <label>Lote</label>
-                <select class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
+                <select class="form-control" id="lote">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
                 </select>
               </div>
             </div>
             <div class="form-group">
               <label>Setor</label>
-              <select class="form-control">
-                <option>VIP</option>
-                <option>Camarote</option>
-                <option>Pista</option>
+              <select class="form-control" id="setor">
+                <option value="VIP">VIP</option>
+                <option value="Camarote">Camarote</option>
+                <option value="Pista">Pista</option>
               </select>
             </div>
             <div class="row">
               <div class="col-sm-4 form-group">
                 <label>Meia entrada</label>
-                <select class="form-control">
-                  <option>Sim</option>
-                  <option>Não</option>
+                <select class="form-control" id="meia">
+                  <option value="true">Sim</option>
+                  <option value="false">Não</option>
                 </select>
               </div>
               <div class="col-sm-4 form-group">
                 <label>Quantidade</label>
-                <select class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
-                  <option>9</option>
-                  <option>10</option>
+                <select class="form-control" id="quantidade">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </select>
               </div>
               <div class="col-sm-4 form-group">
                 <label>Valor dos ingressos</label>
-                <input type="number" placeholder="Quanto custa os ingressos?" class="form-control"/>
+                <input type="number" placeholder="Quanto custa os ingressos?" class="form-control" id="valor"/>
               </div>
             </div>
             <button type="button" class="btn btn-lg btn-info">Criar ingresso</button>

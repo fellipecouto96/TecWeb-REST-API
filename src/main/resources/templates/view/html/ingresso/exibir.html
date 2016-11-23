@@ -58,6 +58,7 @@
 		  	        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
 		  	            var data = JSON.parse(xmlHttp.responseText);
 		  	        	var tbody = document.getElementById('registros');
+		  	        	tbody.innerHTML = '';
 		  	        	if(data != undefined){
 			  	        	console.log(data);
 			  	        	for(var i=0;i<data.length;i++){
@@ -90,14 +91,13 @@
 	  	function excluir(e,id){
 	  		e.preventDefault();
 	  		if(confirm("Deseja realmente excluir o registro?")){
-	  			console.log(id);
 		  	    var xmlHttp = new XMLHttpRequest();
 		  		xmlHttp.onreadystatechange = function() { 
-		  	        if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+		  	        if (xmlHttp.readyState == 4 && xmlHttp.status == 204){
 				  	    pesquisar(e);
 		  	        }
 		  	    }
-		  	    xmlHttp.open( "DELETE", "http://34.192.244.14//TecWeb-REST-API-1.0.0-SNAPSHOT/eventos"+id, true );
+		  	    xmlHttp.open( "DELETE", "http://34.192.244.14//TecWeb-REST-API-1.0.0-SNAPSHOT/ingressos/"+id, true );
 		  	    xmlHttp.send( "" );
 	  		}
 	  	
