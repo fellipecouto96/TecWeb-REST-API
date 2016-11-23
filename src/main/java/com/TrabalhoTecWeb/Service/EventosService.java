@@ -4,11 +4,15 @@ import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContextException;
 import org.springframework.stereotype.Service;
 
 import com.TrabalhoTecWeb.Model.Evento;
 import com.TrabalhoTecWeb.Repository.EventosRepository;
+import com.TrabalhoTecWeb.Service.Exceptions.ApplicationException;
 import com.TrabalhoTecWeb.Service.Exceptions.NenhumRegistroEncontradoException;
 import com.TrabalhoTecWeb.Service.Exceptions.RegistroRepetidoException;
 
@@ -17,6 +21,9 @@ public class EventosService {
 
 	@Autowired
 	private EventosRepository eventosRepository;
+	
+	@Autowired
+	private IngressoService ingressoService;
 	
 	public List<Evento> listar() {
 		return eventosRepository.findAll();
@@ -35,6 +42,10 @@ public class EventosService {
 	
 	public void deletar(Integer id) {
 		validarExistenciaEvento(id);
+		System.out.println(ingressoService.listarPorCodEvento(id).isEmpty());
+		if(!ingressoService.listarPorCodEvento(id).isEmpty()){
+			throw new ApplicationException("Não é possível deletar o evento pois existem ingressos vinculados");
+		}
 		eventosRepository.delete(id);
 		
 	}
